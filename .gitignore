@@ -22,3 +22,6 @@ obj/
 jni/libs/
 .buildinfo
 bazel-*
+.release/
+release/
+.develop/

@@ -1,0 +1,21 @@
+name: ceres_solver
+version:  __from_changelog__
+maintainer: Kaijin Ji <kaijin.ji@tusimple.ai>
+
+extra_deps:
+  apt: cmake libgoogle-glog-dev libatlas-base-dev libsuitesparse-dev
+
+deps: 
+  eigen: any
+
+build: |
+  mkdir -p build
+  cd build
+  if which ninja > /dev/null 2>&1; then
+    echo "compile by ninja!"
+    cmake .. -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -G Ninja && ninja -j2 && ninja install 
+  else
+    cmake .. -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE && make -j2 && make install
+  fi
+
+
